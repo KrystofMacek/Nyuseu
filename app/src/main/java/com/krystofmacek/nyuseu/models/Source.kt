@@ -1,4 +1,4 @@
-package com.krystofmacek.nyuseu
+package com.krystofmacek.nyuseu.models
 
 data class Source(
     val id: Any,

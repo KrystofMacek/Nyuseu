@@ -1,6 +1,6 @@
-package com.krystofmacek.nyuseu
+package com.krystofmacek.nyuseu.models
 
-import com.krystofmacek.nyuseu.Article
+import com.krystofmacek.nyuseu.models.Article
 
 data class NewsResponse(
     val articles: List<Article>,

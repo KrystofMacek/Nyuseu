@@ -1,6 +1,6 @@
 package com.krystofmacek.nyuseu.api
 
-import com.krystofmacek.nyuseu.NewsResponse
+import com.krystofmacek.nyuseu.models.NewsResponse
 import com.krystofmacek.nyuseu.util.Constants.Companion.API_KEY
 import retrofit2.Response
 import retrofit2.http.GET
