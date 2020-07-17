@@ -7,11 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.krystofmacek.nyuseu.R
+import com.krystofmacek.nyuseu.ui.NewsActivity
+import com.krystofmacek.nyuseu.ui.NewsViewModel
 
 /**
  * A simple [Fragment] subclass.
  */
 class SearchNewsFragment : Fragment() {
+
+    lateinit var viewModel: NewsViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -19,6 +23,11 @@ class SearchNewsFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_search_news, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewModel = (activity as NewsActivity).viewModel
     }
 
 }

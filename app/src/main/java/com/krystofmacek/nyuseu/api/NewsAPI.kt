@@ -6,6 +6,9 @@ import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
 
+/**
+ * Interface defining the HTTP calls to news API
+ * */
 interface NewsAPI {
 
     @GET("v2/top-headline")

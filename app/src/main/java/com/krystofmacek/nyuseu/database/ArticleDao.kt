@@ -4,6 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.krystofmacek.nyuseu.models.Article
 
+/**
+ * Interface defining functions to access article data in database
+ * */
 @Dao
 interface ArticleDao {
 

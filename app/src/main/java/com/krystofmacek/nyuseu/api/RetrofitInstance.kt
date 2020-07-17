@@ -6,7 +6,9 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-
+/**
+ * Singleton for Retrofit Instance
+ * */
 class RetrofitInstance {
     companion object {
 

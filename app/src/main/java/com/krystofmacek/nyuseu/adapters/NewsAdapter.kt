@@ -11,6 +11,10 @@ import com.krystofmacek.nyuseu.R
 import com.krystofmacek.nyuseu.models.Article
 import kotlinx.android.synthetic.main.item_article_preview.view.*
 
+/**
+ * Adapter for creating items in news Recycler View
+ * Created with Diff Util to manage lists
+ * */
 class NewsAdapter: RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
 
     inner class ArticleViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
@@ -46,6 +50,7 @@ class NewsAdapter: RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
         return differ.currentList.size
     }
 
+    // Binding the views with data from article
     override fun onBindViewHolder(holder: ArticleViewHolder, position: Int) {
         val article = differ.currentList[position]
         holder.itemView.apply {
