@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
+import androidx.navigation.fragment.findNavController
 
 import com.krystofmacek.nyuseu.R
 import com.krystofmacek.nyuseu.adapters.NewsAdapter
@@ -41,6 +42,16 @@ class SearchNewsFragment : Fragment() {
         viewModel = (activity as NewsActivity).viewModel
 
         setupRecyclerView()
+
+        newsAdapter.setOnItemClickListener {
+            val bundle = Bundle().apply {
+                putSerializable("article", it)
+            }
+            findNavController().navigate(
+                R.id.action_searchNewsFragment_to_articleFragment,
+                bundle
+            )
+        }
 
         // delay Search
         var job: Job? = null
