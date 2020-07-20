@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebViewClient
 import androidx.navigation.fragment.navArgs
+import com.google.android.material.snackbar.Snackbar
 
 import com.krystofmacek.nyuseu.R
 import com.krystofmacek.nyuseu.ui.NewsActivity
@@ -38,6 +39,12 @@ class ArticleFragment : Fragment() {
         webView.apply {
             webViewClient = WebViewClient()
             loadUrl(article.url)
+        }
+
+        // save article floating action button
+        fab.setOnClickListener {
+            viewModel.saveArticle(article)
+            Snackbar.make(view, "Article Saved", Snackbar.LENGTH_SHORT).show()
         }
     }
 

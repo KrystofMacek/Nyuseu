@@ -3,6 +3,7 @@ package com.krystofmacek.nyuseu.ui
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.krystofmacek.nyuseu.models.Article
 import com.krystofmacek.nyuseu.models.NewsResponse
 import com.krystofmacek.nyuseu.repositories.NewsRepository
 import com.krystofmacek.nyuseu.util.Resource
@@ -59,6 +60,17 @@ class NewsViewModel(
             }
         }
         return Resource.Error(response.message())
+    }
+
+    // DB functions
+    fun saveArticle(article: Article) = viewModelScope.launch {
+        newsRepository.insert(article)
+    }
+
+    fun getSavedNews() = newsRepository.getSavedNews()
+
+    fun deleteArticle(article: Article) = viewModelScope.launch {
+        newsRepository.deleteArticle(article)
     }
 
 }
