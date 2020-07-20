@@ -15,10 +15,12 @@ class NewsViewModel(
 ): ViewModel() {
 
     val breakingNews: MutableLiveData<Resource<NewsResponse>> = MutableLiveData()
-    val breakingNewsPage = 1
+    var breakingNewsPage = 1
+    var breakingNewsResponse: NewsResponse? = null
 
     val searchNews: MutableLiveData<Resource<NewsResponse>> = MutableLiveData()
-    val searchNewsPage = 1
+    var searchNewsPage = 1
+    var searchNewsResponse: NewsResponse? = null
 
     init {
         getBreakingNews("us")
@@ -40,7 +42,18 @@ class NewsViewModel(
         if(response.isSuccessful) {
             // if body not null
             response.body()?.let { resultResponse ->
-                return Resource.Success(resultResponse)
+                // every time we get response increase page by 1
+                breakingNewsPage++
+                // if its the first page
+                if(breakingNewsResponse == null) {
+                    breakingNewsResponse = resultResponse
+                } else {
+                    val oldArticles = breakingNewsResponse?.articles
+                    val newArticles = resultResponse.articles
+                    // add new page of articles to list of already loaded
+                    oldArticles?.addAll(newArticles)
+                }
+                return Resource.Success(breakingNewsResponse ?: resultResponse)
             }
         }
         return Resource.Error(response.message())
@@ -55,8 +68,20 @@ class NewsViewModel(
 
     private fun handleSearchNewsResponse(response: Response<NewsResponse>) : Resource<NewsResponse> {
         if(response.isSuccessful) {
+            // if body not null
             response.body()?.let { resultResponse ->
-                return Resource.Success(resultResponse)
+                // every time we get response increase page by 1
+                searchNewsPage++
+                // if its the first page
+                if(searchNewsResponse == null) {
+                    searchNewsResponse = resultResponse
+                } else {
+                    val oldArticles = searchNewsResponse?.articles
+                    val newArticles = resultResponse.articles
+                    // add new page of articles to list of already loaded
+                    oldArticles?.addAll(newArticles)
+                }
+                return Resource.Success(searchNewsResponse ?: resultResponse)
             }
         }
         return Resource.Error(response.message())
